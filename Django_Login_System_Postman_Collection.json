@@ -1,0 +1,114 @@
+{
+    "info": {
+        "name": "Django Login System API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Signup",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {"key": "username", "value": "testuser", "type": "text"},
+                        {"key": "email", "value": "test@example.com", "type": "text"},
+                        {"key": "password", "value": "testpassword", "type": "text"}
+                    ]
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:8000/signup/",
+                    "protocol": "http",
+                    "host": ["127.0.0.1"],
+                    "port": "8000",
+                    "path": ["signup"]
+                }
+            }
+        },
+        {
+            "name": "Login",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {"key": "email", "value": "test@example.com", "type": "text"},
+                        {"key": "password", "value": "testpassword", "type": "text"}
+                    ]
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:8000/login/",
+                    "protocol": "http",
+                    "host": ["127.0.0.1"],
+                    "port": "8000",
+                    "path": ["login"]
+                }
+            }
+        },
+        {
+            "name": "Get All Users",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/users/",
+                    "protocol": "http",
+                    "host": ["127.0.0.1"],
+                    "port": "8000",
+                    "path": ["users"]
+                }
+            }
+        },
+        {
+            "name": "Get User by Email",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/users/test@example.com/",
+                    "protocol": "http",
+                    "host": ["127.0.0.1"],
+                    "port": "8000",
+                    "path": ["users", "test@example.com"]
+                }
+            }
+        },
+        {
+            "name": "Update User by Email",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [
+                        {"key": "username", "value": "updateduser", "type": "text"},
+                        {"key": "password", "value": "newpassword", "type": "text"}
+                    ]
+                },
+                "url": {
+                    "raw": "http://127.0.0.1:8000/users/test@example.com/update/",
+                    "protocol": "http",
+                    "host": ["127.0.0.1"],
+                    "port": "8000",
+                    "path": ["users", "test@example.com", "update"]
+                }
+            }
+        },
+        {
+            "name": "Delete User by Email",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://127.0.0.1:8000/users/test@example.com/delete/",
+                    "protocol": "http",
+                    "host": ["127.0.0.1"],
+                    "port": "8000",
+                    "path": ["users", "test@example.com", "delete"]
+                }
+            }
+        }
+    ]
+}

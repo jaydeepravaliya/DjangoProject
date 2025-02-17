@@ -1,0 +1,21 @@
+# Virtual environment
+DjangoAssignment/
+venv/
+.env
+
+# Byte-compiled / cached
+__pycache__/
+*.py[cod]
+
+# Logs & database
+*.sqlite3
+*.log
+
+# Django-specific
+/media/
+/static/
+
+# IDE files
+.vscode/
+.idea/
+*.swp

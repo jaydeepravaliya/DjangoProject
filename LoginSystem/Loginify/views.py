@@ -28,17 +28,59 @@ def signup(request):
 
 def login(request):
     if request.method == "POST":
-        email = request.POST['email']
-        password = request.POST['password']
+        email = request.POST["email"]
+        password = request.POST["password"]
 
         user = UserDetails.objects.filter(email=email).first()
 
         if not user:
-            return HttpResponse("No account found with this email. Please sign up first.")
+            return HttpResponse(
+                "No account found with this email. Please sign up first."
+            )
 
         if user.password != password:
             return HttpResponse("Incorrect password. Please try again.")
 
         return HttpResponse("Login Successful!")
 
-    return render(request, 'Loginify/login.html')
+    return render(request, "Loginify/login.html")
+
+
+# Get all users
+def get_all_users(request):
+    users = UserDetails.objects.all()
+    user_list = "<br>".join([f"{user.username} - {user.email}" for user in users])
+    return HttpResponse(f"All Users:<br>{user_list}")
+
+
+# Get a single user by email
+def get_user_by_email(request, email):
+    try:
+        user = UserDetails.objects.get(email=email)
+        return HttpResponse(f"User Found: {user.username} - {user.email}")
+    except UserDetails.DoesNotExist:
+        return HttpResponse("User not found.")
+
+
+# Update user details
+def update_user(request, email):
+    if request.method == "POST":
+        try:
+            user = UserDetails.objects.get(email=email)
+            user.username = request.POST.get("username", user.username)
+            user.password = request.POST.get("password", user.password)
+            user.save()
+            return HttpResponse(f"User {email} updated successfully.")
+        except UserDetails.DoesNotExist:
+            return HttpResponse("User not found.")
+    return HttpResponse("Invalid request method. Use POST.")
+
+
+# Delete user by email
+def delete_user(request, email):
+    try:
+        user = UserDetails.objects.get(email=email)
+        user.delete()
+        return HttpResponse(f"User {email} deleted successfully.")
+    except UserDetails.DoesNotExist:
+        return HttpResponse("User not found.")
